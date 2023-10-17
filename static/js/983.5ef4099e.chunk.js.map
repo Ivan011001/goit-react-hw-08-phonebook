@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/983.5ef4099e.chunk.js","mappings":"gMAAe,SAASA,IACtB,OACE,0BACE,sEAGL,C","sources":["pages/HomePage.jsx"],"sourcesContent":["export default function HomePage() {\n  return (\n    <div>\n      <h1>Here You Can Build Your Own Contact Book</h1>\n    </div>\n  );\n}\n"],"names":["HomePage"],"sourceRoot":""}
