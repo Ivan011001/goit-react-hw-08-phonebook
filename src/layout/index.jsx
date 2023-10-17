@@ -1,5 +1,4 @@
 import { Outlet } from 'react-router-dom';
-import { Suspense } from 'react';
 import Header from 'components/Header';
 
 export default function SharedLayout() {
@@ -7,11 +6,9 @@ export default function SharedLayout() {
     <>
       <Header />
 
-      <Suspense>
-        <main>
-          <Outlet />
-        </main>
-      </Suspense>
+      <main>
+        <Outlet />
+      </main>
     </>
   );
 }
