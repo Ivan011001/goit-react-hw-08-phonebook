@@ -1,4 +1,5 @@
 import HeaderNavigation from 'components/HeaderNavigation';
+import AuthNavigation from 'components/AuthNavigation';
 import UserMenu from 'components/UserMenu';
 import { useSelector } from 'react-redux';
 import { selectUserIsLogged } from 'redux/auth/selectors';
@@ -9,7 +10,7 @@ export default function Header() {
   return (
     <StyledHeader>
       <HeaderNavigation />
-      {isLogged && <UserMenu />}
+      {isLogged ? <UserMenu /> : <AuthNavigation />}
     </StyledHeader>
   );
 }
