@@ -1,5 +1,7 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import { refresh } from 'redux/auth/operations';
+import { useDispatch } from 'react-redux';
 
 const SharedLayout = lazy(() => import('layout'));
 const HomePage = lazy(() => import('pages/HomePage'));
@@ -8,6 +10,11 @@ const RegisterPage = lazy(() => import('pages/RegisterPage'));
 const ContactsPage = lazy(() => import('pages/ContactsPage'));
 
 export default function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(refresh());
+  }, [dispatch]);
+
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Routes>

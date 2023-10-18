@@ -34,3 +34,23 @@ export const logIn = createAsyncThunk('user/logIn', async (user, thunkAPI) => {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
+
+export const logOut = createAsyncThunk('user/logout', async (_, thunkAPI) => {
+  try {
+    await axios.post('users/logout');
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
+export const refresh = createAsyncThunk('user/refresh', async (_, thunkAPI) => {
+  try {
+    const persistedToken = thunkAPI.getState().auth.token;
+    if (!persistedToken) return;
+    token.set(persistedToken);
+    const { data } = await axios.get('users/current');
+    return data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
