@@ -40,7 +40,9 @@ const authSlice = createSlice({
       state.user = { ...action.payload };
       state.isLogged = true;
     },
-    [refresh.rejected](state, action) {},
+    [refresh.rejected](state, action) {
+      state.isLogged = action.payload;
+    },
   },
 });
 
