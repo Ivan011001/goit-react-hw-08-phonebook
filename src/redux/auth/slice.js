@@ -41,7 +41,7 @@ const authSlice = createSlice({
       state.isLogged = true;
     },
     [refresh.rejected](state, action) {
-      state.isLogged = action.payload;
+      state.isLogged = false;
     },
   },
 });
