@@ -1,37 +1,96 @@
+import * as React from 'react';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/operations';
+import { Link } from 'react-router-dom';
 
-export default function LoginForm() {
+const defaultTheme = createTheme();
+
+export default function LogInForm() {
   const dispatch = useDispatch();
 
-  const onFormSubmit = e => {
-    e.preventDefault();
-    const form = e.target;
-    const { email, password } = form.elements;
-
-    if (!email.value || !password.value) return;
-
-    const user = {
-      email: email.value,
-      password: password.value,
+  const handleSubmit = event => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const userData = {
+      email: data.get('email'),
+      password: data.get('password'),
     };
-
-    dispatch(logIn(user));
-
-    form.reset();
+    dispatch(logIn(userData));
+    event.target.reset();
   };
 
   return (
-    <form onSubmit={onFormSubmit}>
-      <label>
-        Email
-        <input type="text" name="email" />
-      </label>
-      <label>
-        Email
-        <input type="password" name="password" />
-      </label>
-      <button>Login</button>
-    </form>
+    <ThemeProvider theme={defaultTheme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Log In
+          </Typography>
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            noValidate
+            sx={{ mt: 1 }}
+          >
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Log In
+            </Button>
+
+            <Link to="/register">{"Don't have an account? Sign Up"}</Link>
+          </Box>
+        </Box>
+      </Container>
+    </ThemeProvider>
   );
 }
