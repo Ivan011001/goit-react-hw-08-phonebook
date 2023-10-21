@@ -10,3 +10,5 @@ const contactsSlice = createSlice({
   name: 'contacts',
   initialState,
 });
+
+export const contactsReducer = contactsSlice.reducer;
