@@ -7,11 +7,11 @@ export default function SharedLayout() {
     <>
       <Header />
 
-      <Suspense fallback={<h1>Loading...</h1>}>
-        <main>
+      <main>
+        <Suspense fallback={<h1>Loading...</h1>}>
           <Outlet />
-        </main>
-      </Suspense>
+        </Suspense>
+      </main>
     </>
   );
 }
