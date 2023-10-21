@@ -1,7 +1,27 @@
+import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectUserIsLogged } from 'redux/auth/selectors';
+
 export default function HomePage() {
+  const navigate = useNavigate();
+  const isLogged = useSelector(selectUserIsLogged);
+
   return (
-    <div>
-      <h1>Here You Can Build Your Own Contact Book</h1>
+    <div
+      style={{
+        textAlign: 'center',
+        marginTop: 300,
+      }}
+    >
+      <h1 style={{ marginBottom: 20 }}>
+        Here You Can Build Your Own Contact Book
+      </h1>
+      {!isLogged && (
+        <Button variant="contained" onClick={() => navigate('/login')}>
+          Log In
+        </Button>
+      )}
     </div>
   );
 }
