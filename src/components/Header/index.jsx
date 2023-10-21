@@ -9,7 +9,7 @@ import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+import SpatialAudioIcon from '@mui/icons-material/SpatialAudio';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   selectUserName,
@@ -39,7 +39,13 @@ export default function Header() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <SpatialAudioIcon
+            fontSize="large"
+            sx={{
+              display: { xs: 'none', md: 'flex' },
+              mr: 1,
+            }}
+          />
 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             <Button

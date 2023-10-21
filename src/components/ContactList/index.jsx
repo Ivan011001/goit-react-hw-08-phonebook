@@ -1,17 +1,23 @@
 import ContactListItem from './ContactListItem';
-import { selectContacts } from 'redux/contacts/selectors';
+import Loading from 'components/Loading';
+import { selectContacts, selectIsLoading } from 'redux/contacts/selectors';
 import { useSelector } from 'react-redux';
+import { Box } from '@mui/material';
 
 export default function ContactList() {
   const contacts = useSelector(selectContacts);
+  const isLoading = useSelector(selectIsLoading);
 
   return (
-    <ul>
-      {contacts.map(contact => (
-        <li key={contact.id}>
-          <ContactListItem contact={contact} />
-        </li>
-      ))}
-    </ul>
+    <>
+      {isLoading && <Loading />}
+      <Box display="flex" flexWrap="wrap" gap={4}>
+        {contacts.map(contact => (
+          <div key={contact.id}>
+            <ContactListItem contact={contact} />
+          </div>
+        ))}
+      </Box>
+    </>
   );
 }
