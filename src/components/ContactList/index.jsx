@@ -8,7 +8,7 @@ export default function ContactList() {
   return (
     <ul>
       {contacts.map(contact => (
-        <li key={contact}>
+        <li key={contact.id}>
           <ContactListItem contact={contact} />
         </li>
       ))}

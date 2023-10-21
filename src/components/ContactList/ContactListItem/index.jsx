@@ -1,3 +1,8 @@
 export default function ContactListItem({ contact }) {
-  return <div>{contact}</div>;
+  return (
+    <div>
+      <span>{contact.name}</span>
+      <span>{contact.number}</span>
+    </div>
+  );
 }

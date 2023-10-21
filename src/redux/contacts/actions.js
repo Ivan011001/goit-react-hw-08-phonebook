@@ -12,3 +12,16 @@ export const getContacts = createAsyncThunk(
     }
   }
 );
+
+export const addContact = createAsyncThunk(
+  'contacts/add',
+  async (contact, thunkAPI) => {
+    try {
+      const { data } = await axios.post('contacts', contact);
+      console.log(data);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
