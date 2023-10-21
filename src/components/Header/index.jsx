@@ -1,20 +1,3 @@
-// import HeaderNavigation from 'components/HeaderNavigation';
-// import AuthNavigation from 'components/AuthNavigation';
-// import UserMenu from 'components/UserMenu';
-// import { useSelector } from 'react-redux';
-// import { selectUserIsLogged } from 'redux/auth/selectors';
-// import { StyledHeader } from './Header.styled';
-
-// export default function Header() {
-//   const isLogged = useSelector(selectUserIsLogged);
-//   return (
-//     <StyledHeader>
-//       <HeaderNavigation />
-//       {isLogged ? <UserMenu /> : <AuthNavigation />}
-//     </StyledHeader>
-//   );
-// }
-
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -25,7 +8,6 @@ import Menu from '@mui/material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useSelector, useDispatch } from 'react-redux';
