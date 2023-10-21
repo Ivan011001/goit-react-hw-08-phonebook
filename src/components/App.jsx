@@ -5,11 +5,17 @@ import { useDispatch } from 'react-redux';
 import PrivateRoute from 'PrivateRoute';
 import PublicRoute from 'PublicRoute';
 
-const SharedLayout = lazy(() => import('layout'));
-const HomePage = lazy(() => import('pages/HomePage'));
-const LoginPage = lazy(() => import('pages/LoginPage'));
-const RegisterPage = lazy(() => import('pages/RegisterPage'));
-const ContactsPage = lazy(() => import('pages/ContactsPage'));
+import SharedLayout from 'layout';
+import HomePage from 'pages/HomePage';
+import LoginPage from 'pages/LoginPage';
+import RegisterPage from 'pages/RegisterPage';
+import ContactsPage from 'pages/ContactsPage';
+
+// const SharedLayout = lazy(() => import('layout'));
+// const HomePage = lazy(() => import('pages/HomePage'));
+// const LoginPage = lazy(() => import('pages/LoginPage'));
+// const RegisterPage = lazy(() => import('pages/RegisterPage'));
+// const ContactsPage = lazy(() => import('pages/ContactsPage'));
 
 export default function App() {
   const dispatch = useDispatch();

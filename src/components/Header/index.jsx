@@ -87,13 +87,11 @@ export default function Header() {
             >
               <Typography textAlign="center">{email}</Typography>
 
-              <Tooltip title="Open settings">
-                <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt={name} src="/static/images/avatar/2.jpg" />
-                  </IconButton>
-                </Box>
-              </Tooltip>
+              <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt={name} src="/static/images/avatar/2.jpg" />
+                </IconButton>
+              </Box>
             </Box>
 
             <Menu
