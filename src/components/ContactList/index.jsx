@@ -11,13 +11,15 @@ export default function ContactList() {
   return (
     <>
       {isLoading && <CardLoading />}
-      <Box display="flex" flexWrap="wrap" gap={10}>
-        {contacts.map(contact => (
-          <div key={contact.id}>
-            <ContactListItem contact={contact} />
-          </div>
-        ))}
-      </Box>
+      {!isLoading && (
+        <Box display="flex" flexWrap="wrap" gap={10}>
+          {contacts.map(contact => (
+            <div key={contact.id}>
+              <ContactListItem contact={contact} />
+            </div>
+          ))}
+        </Box>
+      )}
     </>
   );
 }
