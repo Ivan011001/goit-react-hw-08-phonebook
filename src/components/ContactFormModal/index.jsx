@@ -15,8 +15,15 @@ import { SpeedDialIcon } from '@mui/material';
 import { SpeedDial } from '@mui/material';
 import { Button } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
+import { MuiTelInput, matchIsValidTel } from 'mui-tel-input';
 
 export default function ContactForModal() {
+  const [phoneNumber, setPhoneNumber] = React.useState('');
+  const handleInputChange = newValue => {
+    setPhoneNumber(newValue);
+    console.log(matchIsValidTel(newValue));
+  };
+
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -62,10 +69,14 @@ export default function ContactForModal() {
             <form onSubmit={onFormSubmit}>
               <Box style={{ display: 'flex', gap: 20 }}>
                 <FormControl variant="standard">
-                  <InputLabel htmlFor="input-with-icon-adornment-name">
+                  <InputLabel
+                    htmlFor="input-with-icon-adornment-name"
+                    size="normal"
+                  >
                     Contact Name
                   </InputLabel>
                   <Input
+                    size="normal"
                     name="name"
                     id="input-with-icon-adornment-name"
                     startAdornment={
@@ -77,17 +88,17 @@ export default function ContactForModal() {
                 </FormControl>
 
                 <FormControl variant="standard">
-                  <InputLabel htmlFor="input-with-icon-adornment-number">
-                    Contact Number
-                  </InputLabel>
-                  <Input
+                  <MuiTelInput
+                    variant="outlined"
+                    sx={{ mt: 1 }}
+                    size="small"
+                    continents={['EU']}
+                    defaultCountry="UA"
+                    placeholder="Contact Number"
                     name="number"
                     id="input-with-icon-adornment-number"
-                    startAdornment={
-                      <InputAdornment position="start">
-                        <AccountCircle />
-                      </InputAdornment>
-                    }
+                    value={phoneNumber}
+                    onChange={handleInputChange}
                   />
                 </FormControl>
               </Box>
