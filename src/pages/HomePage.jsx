@@ -17,9 +17,13 @@ export default function HomePage() {
       <h1 style={{ marginBottom: 20 }}>
         Here You Can Build Your Own Contact Book
       </h1>
-      {!isLogged && (
+      {!isLogged ? (
         <Button variant="contained" onClick={() => navigate('/login')}>
           Log In
+        </Button>
+      ) : (
+        <Button variant="contained" onClick={() => navigate('/contacts')}>
+          Contacts
         </Button>
       )}
     </div>
