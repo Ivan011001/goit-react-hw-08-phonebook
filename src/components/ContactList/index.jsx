@@ -11,18 +11,17 @@ export default function ContactList() {
 
   return (
     <>
+      <Grid item xs={12} md={6}>
+        <List>
+          {contacts.map(contact => (
+            <div key={contact.id}>
+              <ContactListItem contact={contact} />
+            </div>
+          ))}
+        </List>
+      </Grid>
+
       {isLoading && <CardLoading />}
-      {!isLoading && (
-        <Grid item xs={12} md={6}>
-          <List>
-            {contacts.map(contact => (
-              <div key={contact.id}>
-                <ContactListItem contact={contact} />
-              </div>
-            ))}
-          </List>
-        </Grid>
-      )}
     </>
   );
 }

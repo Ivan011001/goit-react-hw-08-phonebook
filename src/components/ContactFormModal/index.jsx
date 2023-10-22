@@ -44,9 +44,11 @@ export default function ContactForModal() {
       name,
       number,
     };
+
     dispatch(addContact(newContact));
     handleClose();
-    setPhoneNumber('+380');
+    setPhoneNumber('');
+    setPhoneNumberValid(false);
     form.reset();
   };
 
