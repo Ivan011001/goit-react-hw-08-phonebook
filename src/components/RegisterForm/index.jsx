@@ -12,6 +12,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/operations';
 import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const defaultTheme = createTheme();
 
@@ -26,7 +27,20 @@ export default function SignUp() {
       email: data.get('email'),
       password: data.get('password'),
     };
-    dispatch(register(userData));
+
+    toast.promise(
+      dispatch(register(userData)).unwrap(),
+      {
+        loading: 'Loading',
+        success: data => `You have signed up`,
+        error: err => `Invalid data`,
+      },
+      {
+        success: {
+          duration: 5000,
+        },
+      }
+    );
     event.target.reset();
   };
 

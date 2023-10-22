@@ -4,6 +4,7 @@ import Header from 'components/Header';
 import Loading from 'components/Loading';
 import Footer from 'components/Footer';
 import { PageView, PageViewMain } from './SharedLayout.styled';
+import { Toaster } from 'react-hot-toast';
 
 export default function SharedLayout() {
   return (
@@ -17,6 +18,8 @@ export default function SharedLayout() {
       </PageViewMain>
 
       <Footer />
+
+      <Toaster />
     </PageView>
   );
 }

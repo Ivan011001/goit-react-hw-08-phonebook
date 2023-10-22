@@ -8,6 +8,7 @@ import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ContactEditModal from 'components/ContactEditModal';
+import { Toaster, toast } from 'react-hot-toast';
 
 function stringToColor(string) {
   let hash = 0;
@@ -41,6 +42,26 @@ function stringAvatar(name) {
 export default function ContactListItem({ contact }) {
   const dispatch = useDispatch();
 
+  const handleContactDelete = () => {
+    toast.promise(
+      dispatch(deleteContact(contact.id)).unwrap(),
+      {
+        loading: 'Loading',
+        success: data => `Contact ${data.name} was deleted`,
+        error: err => `${err.toString()}`,
+      },
+      {
+        style: {
+          minWidth: '250px',
+        },
+        success: {
+          duration: 5000,
+          icon: '🔥',
+        },
+      }
+    );
+  };
+
   return (
     <ListItem
       secondaryAction={
@@ -50,7 +71,7 @@ export default function ContactListItem({ contact }) {
           <IconButton
             edge="end"
             aria-label="delete"
-            onClick={() => dispatch(deleteContact(contact.id))}
+            onClick={handleContactDelete}
           >
             <DeleteIcon color="error" />
           </IconButton>

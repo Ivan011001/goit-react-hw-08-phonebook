@@ -18,6 +18,7 @@ import {
 } from 'redux/auth/selectors';
 import { logOut } from 'redux/auth/operations';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 export default function Header() {
   const name = useSelector(selectUserName);
@@ -33,6 +34,23 @@ export default function Header() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const logOutHandler = () => {
+    console.log(dispatch(logOut()).unwrap());
+    toast.promise(
+      dispatch(logOut()).unwrap(),
+      {
+        loading: 'Loading',
+        success: data => `You have logged out`,
+        error: err => ` ${err.toString()}`,
+      },
+      {
+        success: {
+          duration: 5000,
+        },
+      }
+    );
   };
 
   return (
@@ -100,10 +118,7 @@ export default function Header() {
             >
               {isLogged ? (
                 <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography
-                    onClick={() => dispatch(logOut())}
-                    textAlign="center"
-                  >
+                  <Typography onClick={logOutHandler} textAlign="center">
                     Log Out
                   </Typography>
                 </MenuItem>

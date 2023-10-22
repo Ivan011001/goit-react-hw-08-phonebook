@@ -16,6 +16,7 @@ import { SpeedDial } from '@mui/material';
 import { Button } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import { MuiTelInput, matchIsValidTel } from 'mui-tel-input';
+import { Toaster, toast } from 'react-hot-toast';
 
 export default function ContactForModal() {
   const [phoneNumber, setPhoneNumber] = React.useState('');
@@ -45,7 +46,22 @@ export default function ContactForModal() {
       number,
     };
 
-    dispatch(addContact(newContact));
+    toast.promise(
+      dispatch(addContact(newContact)).unwrap(),
+      {
+        loading: 'Loading',
+        success: data => `Contact ${data.name} was added`,
+        error: err => `${err.toString()}`,
+      },
+      {
+        style: {
+          minWidth: '250px',
+        },
+        success: {
+          duration: 5000,
+        },
+      }
+    );
     handleClose();
     setPhoneNumber('');
     setPhoneNumberValid(false);
@@ -118,6 +134,8 @@ export default function ContactForModal() {
           </Box>
         </DialogContent>
       </Dialog>
+
+      <Toaster />
     </div>
   );
 }

@@ -46,7 +46,7 @@ export default function Footer() {
           )}
         </div>
         <StyledLink style={{ float: 'right' }}>
-          &copy;2021| All Rights Reserved
+          &copy;2023| All Rights Reserved
         </StyledLink>
       </Box>
     </AppBar>
