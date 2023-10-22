@@ -46,6 +46,7 @@ export default function ContactForModal() {
     };
     dispatch(addContact(newContact));
     handleClose();
+    setPhoneNumber('+380');
     form.reset();
   };
 

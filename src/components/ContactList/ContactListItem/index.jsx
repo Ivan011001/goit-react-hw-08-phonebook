@@ -1,44 +1,68 @@
 import { useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/contacts/actions';
 import * as React from 'react';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
+import ListItem from '@mui/material/ListItem';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ListItemText from '@mui/material/ListItemText';
+import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+
+function stringToColor(string) {
+  let hash = 0;
+  let i;
+
+  /* eslint-disable no-bitwise */
+  for (i = 0; i < string.length; i += 1) {
+    hash = string.charCodeAt(i) + ((hash << 5) - hash);
+  }
+
+  let color = '#';
+
+  for (i = 0; i < 3; i += 1) {
+    const value = (hash >> (i * 8)) & 0xff;
+    color += `00${value.toString(16)}`.slice(-2);
+  }
+  /* eslint-enable no-bitwise */
+
+  return color;
+}
+
+function stringAvatar(name) {
+  return {
+    sx: {
+      bgcolor: stringToColor(name),
+    },
+    children: `${name.split(' ')[0][0]}`,
+  };
+}
 
 export default function ContactListItem({ contact }) {
   const dispatch = useDispatch();
 
   return (
-    <Card sx={{ width: 245 }}>
-      <CardMedia
-        sx={{ height: 140 }}
-        image="https://media.istockphoto.com/id/157834378/photo/tropical-beach.jpg?s=612x612&w=0&k=20&c=Er-KcCG57M1rt1ttcigm0N_p_-sY6Tho0SE63CtZrIo="
-        title="green iguana"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {contact.name}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Number: {contact.number}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button variant="outlined" color="secondary" size="small">
-          Change
-        </Button>
-        <Button
-          variant="outlined"
-          color="error"
-          size="small"
-          onClick={() => dispatch(deleteContact(contact.id))}
-        >
-          Delete
-        </Button>
-      </CardActions>
-    </Card>
+    <ListItem
+      secondaryAction={
+        <>
+          <IconButton edge="end" aria-label="delete" sx={{ mr: 2 }}>
+            <EditIcon color="success" />
+          </IconButton>
+
+          <IconButton
+            edge="end"
+            aria-label="delete"
+            onClick={() => dispatch(deleteContact(contact.id))}
+          >
+            <DeleteIcon color="error" />
+          </IconButton>
+        </>
+      }
+    >
+      <ListItemAvatar>
+        <Avatar {...stringAvatar(contact.name)}></Avatar>
+      </ListItemAvatar>
+      <ListItemText primary={contact.name} secondary={contact.number} />
+    </ListItem>
   );
 }

@@ -3,6 +3,8 @@ import { selectContacts, selectIsLoading } from 'redux/contacts/selectors';
 import { useSelector } from 'react-redux';
 import { Box } from '@mui/material';
 import CardLoading from 'components/CardLoading';
+import { Grid } from '@mui/material';
+import { List } from '@mui/material';
 
 export default function ContactList() {
   const contacts = useSelector(selectContacts);
@@ -12,13 +14,15 @@ export default function ContactList() {
     <>
       {isLoading && <CardLoading />}
       {!isLoading && (
-        <Box display="flex" flexWrap="wrap" gap={10}>
-          {contacts.map(contact => (
-            <div key={contact.id}>
-              <ContactListItem contact={contact} />
-            </div>
-          ))}
-        </Box>
+        <Grid item xs={12} md={6}>
+          <List>
+            {contacts.map(contact => (
+              <div key={contact.id}>
+                <ContactListItem contact={contact} />
+              </div>
+            ))}
+          </List>
+        </Grid>
       )}
     </>
   );
