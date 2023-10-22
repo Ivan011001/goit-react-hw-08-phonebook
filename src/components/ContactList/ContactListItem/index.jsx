@@ -6,8 +6,8 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
-import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import ContactEditModal from 'components/ContactEditModal';
 
 function stringToColor(string) {
   let hash = 0;
@@ -45,9 +45,7 @@ export default function ContactListItem({ contact }) {
     <ListItem
       secondaryAction={
         <>
-          <IconButton edge="end" aria-label="delete" sx={{ mr: 2 }}>
-            <EditIcon color="success" />
-          </IconButton>
+          <ContactEditModal contact={contact} />
 
           <IconButton
             edge="end"

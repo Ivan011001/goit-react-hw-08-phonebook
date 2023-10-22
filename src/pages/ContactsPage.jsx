@@ -3,9 +3,13 @@ import { useDispatch } from 'react-redux';
 import { getContacts } from 'redux/contacts/actions';
 import ContactList from 'components/ContactList';
 import ContactFormModal from 'components/ContactFormModal';
+import { useSelector } from 'react-redux';
+import { selectContactsCount } from 'redux/contacts/selectors';
 
 export default function ContactsPage() {
   const dispatch = useDispatch();
+
+  const contactsCount = useSelector(selectContactsCount);
 
   useEffect(() => {
     dispatch(getContacts());
@@ -13,6 +17,16 @@ export default function ContactsPage() {
 
   return (
     <>
+      {contactsCount === 0 && (
+        <div
+          style={{
+            textAlign: 'center',
+            marginTop: 300,
+          }}
+        >
+          <h1 style={{ marginBottom: 20 }}>You have no contacts yet</h1>
+        </div>
+      )}
       <ContactFormModal />
       <ContactList />
     </>
