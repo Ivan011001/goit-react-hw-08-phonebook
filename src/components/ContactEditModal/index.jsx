@@ -12,7 +12,7 @@ import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import { MuiTelInput, matchIsValidTel } from 'mui-tel-input'; // Import MuiTelInput separately
+import { MuiTelInput } from 'mui-tel-input'; // Import MuiTelInput separately
 import { useDispatch } from 'react-redux';
 import { changeContact } from 'redux/contacts/actions';
 
@@ -25,10 +25,9 @@ export default function ContactEditModal({ contact }) {
   };
 
   const [phoneNumber, setPhoneNumber] = useState(contact.number);
-  const [phoneNumberValid, setPhoneNumberValid] = useState(false);
+
   const onInputChange = newValue => {
     setPhoneNumber(newValue);
-    setPhoneNumberValid(matchIsValidTel(newValue));
   };
 
   const [open, setOpen] = useState(false);
@@ -123,11 +122,7 @@ export default function ContactEditModal({ contact }) {
                   Close
                 </Button>
 
-                <Button
-                  disabled={!phoneNumberValid}
-                  type="submit"
-                  color="success"
-                >
+                <Button type="submit" color="success">
                   Change
                 </Button>
               </DialogActions>
