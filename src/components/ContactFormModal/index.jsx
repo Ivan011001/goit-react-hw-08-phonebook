@@ -19,9 +19,10 @@ import { MuiTelInput, matchIsValidTel } from 'mui-tel-input';
 
 export default function ContactForModal() {
   const [phoneNumber, setPhoneNumber] = React.useState('');
+  const [phoneNumberValid, setPhoneNumberValid] = React.useState(null);
   const handleInputChange = newValue => {
     setPhoneNumber(newValue);
-    console.log(matchIsValidTel(newValue));
+    setPhoneNumberValid(matchIsValidTel(newValue));
   };
 
   const [open, setOpen] = React.useState(false);
@@ -69,13 +70,12 @@ export default function ContactForModal() {
             <form onSubmit={onFormSubmit}>
               <Box style={{ display: 'flex', gap: 20 }}>
                 <FormControl variant="standard">
-                  <InputLabel
-                    htmlFor="input-with-icon-adornment-name"
-                    size="normal"
-                  >
+                  <InputLabel htmlFor="input-with-icon-adornment-name">
                     Contact Name
                   </InputLabel>
                   <Input
+                    autoComplete="off"
+                    required
                     size="normal"
                     name="name"
                     id="input-with-icon-adornment-name"
@@ -104,6 +104,7 @@ export default function ContactForModal() {
               </Box>
 
               <Button
+                disabled={!phoneNumberValid}
                 type="submit"
                 sx={{ float: 'right', mt: 2 }}
                 endIcon={<SendIcon />}
