@@ -1,7 +1,6 @@
 import ContactListItem from './ContactListItem';
 import { selectContacts, selectIsLoading } from 'redux/contacts/selectors';
 import { useSelector } from 'react-redux';
-import { Box } from '@mui/material';
 import CardLoading from 'components/CardLoading';
 import { Grid } from '@mui/material';
 import { List } from '@mui/material';
