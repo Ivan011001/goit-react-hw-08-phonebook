@@ -15,7 +15,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import { MuiTelInput } from 'mui-tel-input'; // Import MuiTelInput separately
 import { useDispatch } from 'react-redux';
 import { changeContact } from 'redux/contacts/actions';
-import { Toaster, toast } from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
 
 export default function ContactEditModal({ contact }) {
   const dispatch = useDispatch();
