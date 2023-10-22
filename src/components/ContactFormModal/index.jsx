@@ -10,7 +10,11 @@ import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import { ModalOpenButton } from './ContactFormModal.styled';
+import EditIcon from '@mui/icons-material/Edit';
+import { SpeedDialIcon } from '@mui/material';
+import { SpeedDial } from '@mui/material';
+import { Button } from '@mui/material';
+import SendIcon from '@mui/icons-material/Send';
 
 export default function ContactForModal() {
   const [open, setOpen] = React.useState(false);
@@ -39,9 +43,13 @@ export default function ContactForModal() {
 
   return (
     <div>
-      <ModalOpenButton variant="outlined" onClick={handleClickOpen}>
-        Open alert dialog
-      </ModalOpenButton>
+      <SpeedDial
+        ariaLabel="SpeedDial openIcon example"
+        sx={{ position: 'absolute', bottom: 72, right: 16 }}
+        icon={<SpeedDialIcon openIcon={<EditIcon />} />}
+        onClick={handleClickOpen}
+      ></SpeedDial>
+
       <Dialog
         open={open}
         onClose={handleClose}
@@ -84,7 +92,13 @@ export default function ContactForModal() {
                 </FormControl>
               </Box>
 
-              <button style={{ display: 'block' }}>Add</button>
+              <Button
+                type="submit"
+                sx={{ float: 'right', mt: 2 }}
+                endIcon={<SendIcon />}
+              >
+                Add
+              </Button>
             </form>
           </Box>
         </DialogContent>
