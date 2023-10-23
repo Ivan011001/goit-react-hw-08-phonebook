@@ -7,9 +7,11 @@ import { useSelector } from 'react-redux';
 import { selectContactsCount } from 'redux/contacts/selectors';
 import { selectIsLoading } from 'redux/contacts/selectors';
 import ContactSearch from 'components/ContactSearch';
+// import { useLocation } from 'react-router-dom';
 
 export default function ContactsPage() {
   const dispatch = useDispatch();
+  // const location = useLocation();
 
   const contactsCount = useSelector(selectContactsCount);
   const isLoading = useSelector(selectIsLoading);

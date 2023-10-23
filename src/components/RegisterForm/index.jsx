@@ -13,10 +13,12 @@ import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/operations';
 import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const defaultTheme = createTheme();
 
 export default function SignUp() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleSubmit = event => {
@@ -32,7 +34,9 @@ export default function SignUp() {
       dispatch(register(userData)).unwrap(),
       {
         loading: 'Loading',
-        success: data => `You have signed up`,
+        success: data => {
+          return `You have signed up`;
+        },
         error: err => `Invalid data`,
       },
       {

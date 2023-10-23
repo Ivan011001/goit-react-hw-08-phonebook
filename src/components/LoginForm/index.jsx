@@ -14,10 +14,12 @@ import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/operations';
 import { Link } from 'react-router-dom';
 import { Toaster, toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const defaultTheme = createTheme();
 
 export default function LogInForm() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleSubmit = event => {
     event.preventDefault();
@@ -31,7 +33,9 @@ export default function LogInForm() {
       dispatch(logIn(userData)).unwrap(),
       {
         loading: 'Loading',
-        success: data => `You have logged`,
+        success: data => {
+          return `You have logged`;
+        },
         error: err => `${err.toString()}`,
       },
       {
