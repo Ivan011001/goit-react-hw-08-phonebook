@@ -34,7 +34,7 @@ export default function LogInForm() {
         success: data => {
           return `You have logged`;
         },
-        error: err => `${err.toString()}`,
+        error: err => `Invalid user data`,
       },
       {
         style: {},
@@ -43,6 +43,8 @@ export default function LogInForm() {
         },
       }
     );
+
+    event.target.reset();
   };
 
   return (
@@ -79,6 +81,7 @@ export default function LogInForm() {
                 name="email"
                 autoComplete="email"
                 autoFocus
+                placeholder="user@mail.com"
               />
               <TextField
                 margin="normal"

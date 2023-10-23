@@ -80,6 +80,7 @@ export default function SignUp() {
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  placeholder="Sherlock"
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -90,6 +91,7 @@ export default function SignUp() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
+                  placeholder="Holmes"
                 />
               </Grid>
               <Grid item xs={12}>
@@ -100,6 +102,7 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  placeholder="user@mail.com"
                 />
               </Grid>
               <Grid item xs={12}>
