@@ -1,12 +1,15 @@
 import ContactListItem from './ContactListItem';
-import { selectContacts, selectIsLoading } from 'redux/contacts/selectors';
+import {
+  selectFilteredContacts,
+  selectIsLoading,
+} from 'redux/contacts/selectors';
 import { useSelector } from 'react-redux';
 import CardLoading from 'components/CardLoading';
 import { Grid } from '@mui/material';
 import { List } from '@mui/material';
 
 export default function ContactList() {
-  const contacts = useSelector(selectContacts);
+  const contacts = useSelector(selectFilteredContacts);
   const isLoading = useSelector(selectIsLoading);
 
   return (

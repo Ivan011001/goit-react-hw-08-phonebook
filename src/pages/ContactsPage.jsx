@@ -6,6 +6,7 @@ import ContactFormModal from 'components/ContactFormModal';
 import { useSelector } from 'react-redux';
 import { selectContactsCount } from 'redux/contacts/selectors';
 import { selectIsLoading } from 'redux/contacts/selectors';
+import ContactSearch from 'components/ContactSearch';
 
 export default function ContactsPage() {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ export default function ContactsPage() {
           <h1 style={{ marginBottom: 20 }}>You have no contacts yet</h1>
         </div>
       )}
-      <ContactFormModal />
+      {contactsCount > 0 && <ContactSearch />} <ContactFormModal />
       <ContactList />
     </>
   );
